@@ -1,5 +1,5 @@
 """
-WSGI config for SCPC project.
+WSGI config for scpc project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SCPC.settings")
+import config
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", config.settings_profile)
 
 application = get_wsgi_application()
