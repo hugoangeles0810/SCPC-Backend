@@ -3,12 +3,12 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_BASE_DIR = os.path.dirname(BASE_DIR)
 
-settings_profile = 'scpc.settings.base'
+settings_profile = 'scpc.settings.dev'
 secret_key = 'HERE YOUR SECRET KEY'
 
 # database_default = {
 #     'ENGINE': 'django.db.backends.mysql',
-#     'NAME': 'database',
+#     'NAME': 'scpc_db',
 #     'USER': 'user',
 #     'PASSWORD': 'password',
 #     'HOST': 'localhost'
