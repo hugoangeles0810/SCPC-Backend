@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'scpc_core.middleware.RequestModelMiddleware',
 ]
 
 ROOT_URLCONF = 'scpc.urls'
