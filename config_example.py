@@ -7,7 +7,7 @@ settings_profile = 'scpc.settings.dev'
 secret_key = 'HERE YOUR SECRET KEY'
 
 # database_default = {
-#     'ENGINE': 'django.db.backends.mysql',
+#     'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #     'NAME': 'scpc_db',
 #     'USER': 'user',
 #     'PASSWORD': 'password',
