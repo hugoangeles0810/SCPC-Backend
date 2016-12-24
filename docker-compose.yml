@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: scpc_db
+
+  web:
+    # Docker hack to wait until Postgres is up, then run stuff.
+    command: dockerize -wait tcp://db:5432 bash -c "./manage.py migrate; ./manage.py runserver 0.0.0.0:8000"
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    depends_on:
+      - db
+    environment:
+      IN_DOCKER: 1
+    ports:
+      - "8081:8000"
+    volumes:
+       - .:/code
