@@ -21,7 +21,9 @@ import config
 SECRET_KEY = config.secret_key
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '138.197.0.243',
+]
 
 
 # Application definition
