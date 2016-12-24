@@ -1,8 +1,7 @@
 import logging
 
-from django.utils import timezone
-
 from scpc.utils import setallattr
+from scpc_core.models.managers import get_now
 
 logger = logging.getLogger('scpc.middleware.RequestModelMiddleware')
 
@@ -33,7 +32,7 @@ class RequestModelMiddleware(object):
     ip_address = request.META.get('REMOTE_ADDR')
     request.core_request = Request.objects.create(
       user=user, ip_address=ip_address, url=request.path, method=request.method, 
-      request_headers=headers, started_at=timezone.now()
+      request_headers=headers, started_at=get_now()
     )
 
   def process_response(self, request, response):
@@ -44,7 +43,7 @@ class RequestModelMiddleware(object):
         validation_errors = response.content
       setallattr(
         request.core_request, response_status=status_code, 
-        validation_errors=validation_errors, finished_at=timezone.now()
+        validation_errors=validation_errors, finished_at=get_now()
       )
       request.core_request.save()
     logger.info("Finishing request ... ")

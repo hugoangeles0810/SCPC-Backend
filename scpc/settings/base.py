@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'scpc_core',
+    'scpc_auth',
 
 ]
 
@@ -106,6 +107,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

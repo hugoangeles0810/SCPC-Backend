@@ -3,7 +3,12 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models as ext
 from django.utils.translation import gettext_lazy as _
 
+from scpc_core.models import managers
+
 class User(AbstractUser):
+  
+  objects = managers.UserManager()
+
   class Meta(AbstractUser.Meta):
     swappable = "AUTH_USER_MODEL"
 
