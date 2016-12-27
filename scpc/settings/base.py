@@ -22,6 +22,8 @@ SECRET_KEY = config.secret_key
 
 
 ALLOWED_HOSTS = [
+    'localhost',
+    '192.168.0.5',
     '138.197.0.243',
 ]
 
@@ -37,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'corsheaders',
 
     'scpc_core',
     'scpc_auth',
+    'scpc_location',
 
 ]
 
@@ -48,6 +52,7 @@ AUTH_USER_MODEL = 'scpc_core.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -118,8 +123,12 @@ AUTHENTICATION_BACKENDS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
+        'scpc_auth.authentication.TokenAuthentication',
     )
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'
 
 
 # Static files (CSS, JavaScript, Images)

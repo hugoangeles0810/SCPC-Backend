@@ -25,9 +25,9 @@ class EmailRegistrationAPIView(APIView):
       user = User.objects.create_user(**data)
       token = Token.objects.create(user=user)
       rdata = serializers.TokenGenerationResponse(token)
-      return Response(data=rdata.data)
+      return Response(data={"data": rdata.data})
     except EmailAlreadyRegisteredException as e:
-      return Response(data=e.code, status=HTTP_400_BAD_REQUEST)
+      return Response(data={"error": e.code}, status=HTTP_400_BAD_REQUEST)
 
 
 class EmailLoginAPIView(APIView):
@@ -46,6 +46,6 @@ class EmailLoginAPIView(APIView):
     if user:
       token = Token.objects.create(user=user)
       rdata = serializers.TokenGenerationResponse(token)
-      return Response(data=rdata.data)
+      return Response(data={"data": rdata.data})
     else:
-      return Response(status=HTTP_401_UNAUTHORIZED)
+      return Response(data={"error": "Credenciales incorrectas"}, status=HTTP_401_UNAUTHORIZED)

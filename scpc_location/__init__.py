@@ -1,0 +1,1 @@
+default_app_config = 'scpc_location.apps.ScpcLocationConfig'
